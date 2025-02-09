@@ -22,11 +22,28 @@ pipeline {
       }
     }
 
-    stage('BENCH TESTING') {
+    stage('BASIC') {
       steps {
-        sh 'echo "Running bench tests"'
+        catchError(stageResult: 'FAILURE') {
+          sh script: 'python -m pytest tests/chargesafe/test_chargesafe_happy_path.py', label: "test_chargesafe_happy_path"
+        }
       }
+    }
 
+    stage('ALARMS') {
+      steps {
+        catchError(stageResult: 'FAILURE') {
+          sh script: 'python -m pytest tests/chargesafe/test_chargesafe_happy_path.py', label: "test_chargesafe_happy_path"
+        }
+      }
+    }
+
+    stage('STRESS') {
+      steps {
+        catchError(stageResult: 'FAILURE') {
+          sh script: 'python -m pytest tests/chargesafe/test_chargesafe_happy_path.py', label: "test_chargesafe_happy_path"
+        }
+      }
     }
     
   }
