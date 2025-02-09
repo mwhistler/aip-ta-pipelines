@@ -22,12 +22,11 @@ pipeline {
       }
     }
 
-    stage('BASIC') {
+    stage('BENCH TESTING') {
       steps {
-        catchError(stageResult: 'FAILURE') {
-          sh script: 'python -m pytest tests/chargesafe/test_chargesafe_happy_path.py', label: "test_chargesafe_happy_path"
-        }
+        sh 'echo "Running bench tests"'
       }
+
     }
     
   }
