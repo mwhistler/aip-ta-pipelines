@@ -25,10 +25,10 @@ pipeline {
     stage('BASIC') {
       steps {
         catchError(stageResult: 'FAILURE') {
-          sh script: 'python -m pytest tests/chargesafe/test_chargesafe_sensors.py', label: "test_chargesafe_happy_path"
+          sh script: 'python -m pytest tests/chargesafe/test_chargesafe_sensors.py', label: "sensors"
         }
         catchError(stageResult: 'FAILURE') {
-          sh script: 'python -m pytest tests/chargesafe/test_chargesafe_basic_scenarios.py', label: "test_chargesafe_happy_path"
+          sh script: 'python -m pytest tests/chargesafe/test_chargesafe_basic_scenarios.py', label: "basic_scenarios"
         }
       }
     }
